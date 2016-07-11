@@ -1,0 +1,859 @@
+目录
+样式规则	2
+协议	2
+排版规则	2
+缩进	2
+大小写	3
+元数据规则	3
+编码	3
+注释	3
+活动的条目	4
+HTML代码风格规则	4
+文档类型	4
+HTML代码有效性	4
+语义	5
+多媒体后备方案	5
+关注点分离	6
+实体引用	7
+可选标签	7
+type属性	7
+明确度(权重)	8
+HTML代码格式规则	9
+格式	9
+CSS代码风格规则	9
+CSS代码有效性	9
+ID和class的命名	10
+ID和class命名风格	10
+类型选择器	11
+属性缩写	11
+0和单位	11
+0开头的小数	12
+URI外的引号	12
+十六进制	12
+前缀	12
+ID和class命名的定界符	12
+Hacks	13
+CSS代码格式规则	13
+声明顺序	13
+代码块内容缩进	13
+声明完结	13
+属性名完结	14
+选择器和声明分行	14
+规则分行	15
+CSS元数据规则	15
+注释部分	15
+文件顶部注释（推荐使用）	15
+模块注释	15
+单行注释与多行注释	16
+特殊注释	16
+区块注释	16
+常用class名：	16
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+样式规则
+协议
+嵌入式资源书写省略协议头
+省略图像、媒体文件、样式表和脚本等URL协议头部声明 ( http: , https: )。如果不是这两个声明的URL则不省略。
+省略协议声明，使URL成相对地址，防止内容混淆问题和导致小文件重复下载。
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12	<!-- 不推荐 -->
+<script src="http://www.google.com/js/gweb/analytics/autotrack.js"></script>
+<!-- 推荐 -->
+<script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
+/* 不推荐 */
+.example {
+  background: url(http://www.google.com/images/example);
+}
+/* 推荐 */
+.example {
+  background: url(//www.google.com/images/example);
+}
+排版规则
+缩进
+每次缩进两个空格。
+不要用TAB键或多个空格来进行缩进。
+1
+2
+3
+4
+5
+6
+7	<ul>
+  <li>Fantastic
+  <li>Great
+</ul>
+.example {
+  color: blue;
+}
+大小写
+只用小写字母。
+所有的代码都用小写字母：适用于元素名，属性，属性值（除了文本和 CDATA ）， 选择器，特性，特性值（除了字符串）。
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11	<!-- 不推荐 -->
+<A HREF="/">Home</A>
+<!-- 推荐 -->
+<img src="google.png" alt="Google"></pre>
+<h3>行尾空格</h3>
+<strong>删除行尾白空格。</strong>
+行尾空格没必要存在。
+<pre><!-- 不推荐 -->
+<p>What?_
+<!-- 推荐 -->
+<p>Yes please.
+元数据规则
+编码
+用不带BOM头的 UTF-8编码。
+让你的编辑器用没有字节顺序标记的UTF-8编码格式进行编写。
+在HTML模板和文件中指定编码. 不需要制定样式表的编码，它默认为UTF-8.
+<meta charset="utf-8">
+注释
+尽可能的去解释你写的代码。
+用注释来解释代码：它包括什么，它的目的是什么，它能做什么，为什么使用这个解决方案，还是说只是因为偏爱如此呢？
+（本规则可选，没必要每份代码都描述的很充分，它会增重HTML和CSS的代码。这取决于该项目的复杂程度。）
+活动的条目
+用 TODO 标记代办事项和正活动的条目
+只用 TODO 来强调代办事项， 不要用其他的常见格式，例如 @@ 。
+附加联系人（用户名或电子邮件列表），用括号括起来，例如 TODO(contact) 。
+可在冒号之后附加活动条目说明等，例如 TODO: 活动条目说明 。
+1
+2
+3
+4
+5
+6
+7	{# TODO(cha.jn): 重新置中 #}
+<center>Test</center>
+<!-- TODO: 删除可选元素 -->
+<ul>
+  <li>Apples</li>
+  <li>Oranges</li>
+</ul>
+HTML代码风格规则
+文档类型
+请使用HTML5标准。
+HTML5是目前所有HTML文档类型中的首选： .
+（推荐用HTML文本文档格式，即 text/html . 不要用 XHTML。 XHTML格式，即 application/xhtml+xml , 有俩浏览器完全不支持，还比HTML用更多的存储空间。）
+HTML代码有效性
+尽量使用有效的HTML代码。
+编写有效的HTML代码，否则很难达到性能上的提升。
+用类似这样的工具 W3C HTML validator 来进行测试。
+HTML代码有效性是重要的质量衡量标准，并可确保HTML代码可以正确使用。
+1
+2
+3
+4
+5
+6
+7
+8	<!-- 不推荐 -->
+<title>Test</title>
+<article>This is only a test.
+<!-- 推荐 -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test</title>
+<article>This is only a test.</article>
+语义
+根据HTML各个元素的用途而去使用它们。
+使用元素 (有时候错称其为“标签”) 要知道为什么去使用它们和是否正确。 例如，用heading元素构造标题， p 元素构造段落, a 元素构造锚点等。
+根据HTML各个元素的用途而去使用是很重要的，它涉及到文档的可访问性、重用和代码效率等问题。
+•	段落分隔符要使用实际对应的<p>元素，而不是用多个<br>标签。
+•	在合适的条件下，充分利用<dl> （定义列表）和<blockquote> 标签。
+•	列表中的条目必须总是放置于<ul>、<ol>或<dl> 中，永远不要用一组 <div>或<p> 来表示。
+•	给每个表单里的字段加上 <label> 标签，其中的 for 属性必须和对应的输入字段对应，这样用户就可以点击标签。同理，给标签加上 cursor:pointer; 样式也是明智的做法。
+•	不用使用输入字段中的 size 属性。该属性是和输入字段里文本的 font-size 相关的。应该使用CSS宽度。
+•	在某些闭合的 </div> 标签旁边加上一段html注释，说明这里闭合的是什么元素。这在有大量嵌套和缩进的情况下会很有用。
+•	不要把表格用于页面布局。
+•	在合适的条件下，利用 microformats 和/或者 Microdata ，具体说是 hCard 和 adr。
+•	在合适的条件下，利用 <thead>、<tbody>和<th>标签 (以及Scope属性）。
+
+1
+2
+3
+4	<!-- 不推荐 -->
+<div onclick="goToRecommendations();">All recommendations</div>
+<!-- 推荐 -->
+<a href="recommendations/">All recommendations</a>
+
+多媒体后备方案
+为多媒体提供备选内容。
+对于多媒体，如图像，视频，通过 canvas 读取的动画元素，确保提供备选方案。 对于图像使用有意义的备选文案（ alt ） 对于视频和音频使用有效的副本和文案说明。
+提供备选内容是很重要的，原因：给盲人用户以一些提示性的文字，用 @alt 告诉他这图像是关于什么的，给可能没理解视频或音频的内容的用户以提示。
+（图像的 alt 属性会产生冗余，如果使用图像只是为了不能立即用CSS而装饰的 ，就不需要用备选文案了，可以写 alt=”” 。）
+1
+2
+3
+4	<!-- 不推荐 -->
+<img src="spreadsheet.png">
+<!-- 推荐 -->
+<img src="spreadsheet.png" alt="电子表格截图">
+关注点分离
+将表现和行为分开。
+严格保持结构 （标记），表现 （样式），和行为 （脚本）分离, 并尽量让这三者之间的交互保持最低限度。
+确保文档和模板只包含HTML结构， 把所有表现都放到样式表里，把所有行为都放到脚本里。
+此外，尽量使脚本和样式表在文档与模板中有最小接触面积，即减少外链。
+将表现和行为分开维护是很重要滴，因为更改HTML文档结构和模板会比更新样式表和脚本更花费成本。
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20	<!-- 不推荐 -->
+<!DOCTYPE html>
+<title>HTML sucks</title>
+<link rel="stylesheet" href="base.css" media="screen">
+<link rel="stylesheet" href="grid.css" media="screen">
+<link rel="stylesheet" href="print.css" media="print">
+<h1 style="font-size: 1em;">HTML sucks</h1>
+<p>I’ve read about this on a few sites but now I’m sure:
+  <u>HTML is stupid!!1</u>
+<center>I can’t believe there’s no way to control the styling of
+  my website without doing everything all over again!</center>
+<!-- 推荐 -->
+<!DOCTYPE html>
+<title>My first CSS-only redesign</title>
+<link rel="stylesheet" href="default.css">
+<h1>My first CSS-only redesign</h1>
+<p>I’ve read about this on a few sites but today I’m actually
+  doing it: separating concerns and avoiding anything in the HTML of
+  my website that is presentational.
+<p>It’s awesome!
+实体引用
+不要用实体引用。
+不需要使用类似 — 、 ” 和   等的实体引用, 假定团队之间所用的文件和编辑器是同一编码（UTF-8）。
+在HTML文档中具有特殊含义的字符（例如 < 和 & )为例外， 噢对了，还有 “不可见” 字符 （例如no-break空格）。
+1
+2
+3
+4	<!-- 不推荐 -->
+欧元货币符号是 &ldquo;&eur;&rdquo;。
+<!-- 推荐 -->
+欧元货币符号是 “€”。
+可选标签
+省略可选标签（可选）。
+出于优化文件大小和校验， 可以考虑省略可选标签，哪些是可选标签可以参考 HTML5 specification。
+（这种方法可能需要更精准的规范来制定，众多的开发者对此的观点也都不同。考虑到一致性和简洁的原因，省略所有可选标记是有必要的。）
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13
+14	<!-- 不推荐 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spending money, spending bytes</title>
+  </head>
+  <body>
+    <p>Sic.</p>
+  </body>
+</html>
+<!-- 推荐 -->
+<!DOCTYPE html>
+<title>Saving money, saving bytes</title>
+<p>Qed.
+type属性
+在样式表和脚本的标签中忽略 type 属性
+在样式表（除非不用 CSS）和脚本（除非不用 JavaScript）的标签中 不写 type 属性。
+HTML5默认 type 为 text/css 和 text/javascript 类型，所以没必要指定。即便是老浏览器也是支持的。
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10	<!-- 不推荐 -->
+<link rel="stylesheet" href="//www.google.com/css/maia.css"
+  type="text/css">
+<!-- 推荐 -->
+<link rel="stylesheet" href="//www.google.com/css/maia.css">
+<!-- 不推荐 -->
+<script src="//www.google.com/js/gweb/analytics/autotrack.js"
+  type="text/javascript"></script>
+<!-- 推荐 -->
+<script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
+明确度(权重)
+浏览器会通过 计算选择器的明确度 来决定应用哪个CSS规则。如果两个选择器都适用于同样的元素，具有更高明确度的那个会胜出。
+ID 选择器比属性选择器明确度高，class 选择器比任何数量的元素选择器明确度高。尽量使用 ID 选择器来提高明确度。有时候我们可能会想方设法给一个元素应用一条CSS规则，但用尽方法也不能如愿。这种情况有可能是因为我们使用的选择器比另外一个的明确度低，所以明确度高的另一个选择器里的属性就比我们想应用的选择器优先了。这种情况在更大或更复杂的样式表里更为常见。在小一些的项目里，通常这不是大问题。
+计算明确度
+当你在一个很大很复杂的样式表上干活的时候，知道如何计算选择器的明确度会有很大帮助，会节约你的时间，并让你的选择器更有效率。
+明确度的计算方式是对你的CSS的各种组件计数，并用 (a,b,c,d) 格式表达出来。
+元素，伪元素: d = 1 – (0,0,0,1)
+类，伪类，属性: c = 1 – (0,0,1,0)
+Id: b = 1 – (0,1,0,0)
+内联样式: a = 1 – (1,0,0,0)
+使用 !important 会覆盖掉所有的明确度，不管它有多高。因此我们倾向于避免使用它。大部分时候是没必要用它的。即使你需要覆盖某个你访问不到的样式表里的选择器，往往也会有其他的办法去覆盖。尽可能避免使用它。
+
+HTML代码格式规则
+格式
+每个块元素、列表元素或表格元素都独占一行，每个子元素都相对于父元素进行缩进。
+独立元素的样式（as CSS allows elements to assume a different role per display property), 将块元素、列表元素或表格元素都放在新行。
+另外，需要缩进块元素、列表元素或表格元素的子元素。
+（如果出现了列表项左右空文本节点问题，可以试着将所有的 li 元素都放在一行。
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13
+14
+15
+16
+17
+18	<blockquote>
+  <p><em>Space</em>, the final frontier.</p>
+</blockquote>
+<ul>
+  <li>Moe
+  <li>Larry
+  <li>Curly
+</ul>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Income
+      <th scope="col">Taxes
+  <tbody>
+    <tr>
+      <td>$ 5.00
+      <td>$ 4.50
+</table>
+CSS代码风格规则
+CSS代码有效性
+尽量使用有效的CSS代码。
+使用有效的CSS代码，除非是处理CSS校验器程序错误或者需要专有语法。
+用类似W3C CSS validator 这样的工具来进行有效性的测试。
+使用有效的CSS是重要的质量衡量标准，如果发现有的CSS代码没有任何效果的可以删除，确保CSS用法适当。
+ID和class的命名
+为ID和class取通用且有意义的名字。
+应该从ID和class的名字上就能看出这元素是干嘛用的，而不是表象或模糊不清的命名。
+应该优先虑以这元素具体目来进行命名，这样他就最容易理解，减少更新。
+通用名称可以加在兄弟元素都不特殊或没有个别意义的元素上，可以起名类似“helpers”这样的泛。
+使用功能性或通用的名字会减少不必要的文档或模板修改。
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13
+14	/* 不推荐: 无意义 不易理解 */
+#yee-1901 {}
+ 
+/* 不推荐: 表达不具体 */
+.button-green {}
+.clear {}
+/* 推荐: 明确详细 */
+#gallery {}
+#login {}
+.video {}
+ 
+/* 推荐: 通用 */
+.aux {}
+.alt {}
+ID和class命名风格
+非必要的情况下，ID和class的名称应尽量简短。
+简要传达ID或class是关于什么的。
+通过这种方式，似的代码易懂且高效。
+1
+2
+3
+4
+5
+6	/* 不推荐 */
+#navigation {}
+.atr {}
+/* 推荐 */
+#nav {}
+.author {}
+类型选择器
+避免使用CSS类型选择器。
+非必要的情况下不要使用元素标签名和ID或class进行组合。
+出于性能上的考虑避免使用父辈节点做选择器 performance reasons.
+1
+2
+3
+4
+5
+6	/* 不推荐 */
+ul#example {}
+div.error {}
+/* 推荐 */
+#example {}
+.error {}
+属性缩写
+写属性值的时候尽量使用缩写。
+CSS很多属性都支持缩写shorthand （例如 font ） 尽量使用缩写，甚至只设置一个值。
+使用缩写可以提高代码的效率和方便理解。
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13	/* 不推荐 */
+border-top-style: none;
+font-family: palatino, georgia, serif;
+font-size: 100%;
+line-height: 1.6;
+padding-bottom: 2em;
+padding-left: 1em;
+padding-right: 1em;
+padding-top: 0;
+/* 推荐 */
+border-top: 0;
+font: 100%/1.6 palatino, georgia, serif;
+padding: 0 1em 2em;
+0和单位
+省略0后面的单位。
+非必要的情况下 0 后面不用加单位。
+1
+2	margin: 0;
+padding: 0;
+0开头的小数
+省略0开头小数点前面的0。
+值或长度在-1与1之间的小数，小数前的 0 可以忽略不写。
+1	font-size: .8em;
+URI外的引号
+省略URI外的引号。
+不要在 url() 里用 ( “” , ” ) 。
+1	@import url(//www.google.com/css/go.css);
+十六进制
+十六进制尽可能使用3个字符。
+加颜色值时候会用到它，使用3个字符的十六进制更短与简洁。
+1
+2
+3
+4	/* 不推荐 */
+color: #eebbcc;
+/* 推荐 */
+color: #ebc;
+前缀
+选择器前面加上特殊应用标识的前缀（可选）。
+大型项目中最好在ID或class名字前加上这种标识性前缀（命名空间），使用短破折号链接。
+使用命名空间可以防止命名冲突，方便维护，比如在搜索和替换操作上。
+1
+2	.adw-help {} /* AdWords */
+#maia-note {} /* Maia */
+ID和class命名的定界符
+ID和class名字有多单词组合的用短破折号“-”分开。
+别在选择器名字里用短破折号“-”以外的连接词(包括啥也没有)， 以增进对名字的理解和查找。
+1
+2
+3
+4
+5
+6
+7
+8	/* 不推荐：“demo”和“image”中间没加“-” */
+.demoimage {}
+ 
+/* 不推荐：用下划线“_”是屌丝的风格 */
+.error_status {}
+/* 推荐 */
+#video-id {}
+.ads-sample {}
+Hacks
+最好避免使用该死的CSS “hacks” —— 请先尝试使用其他的解决方法。
+虽然它很有诱惑力，可以当作用户代理检测或特殊的CSS过滤器，但它的行为太过于频繁，会长期伤害项目的效率和代码管理，所以能用其他的解决方案就找其他的。
+CSS代码格式规则
+声明顺序
+依字母顺序进行声明。
+都按字母顺序声明，很容易记住和维护。
+忽略浏览器的特定前缀排序，但多浏览器特定的某个CSS属性前缀应相对保持排序（例如-moz前缀在-webkit前面）。
+1
+2
+3
+4
+5
+6
+7
+8	background: fuchsia;
+border: 1px solid;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+color: black;
+text-align: center;
+text-indent: 2em;
+代码块内容缩进
+缩进所有代码块（“{}”之间）内容。
+缩进所有代码块的内容，它能够提高层次结构的清晰度。
+1
+2
+3
+4
+5
+6
+7
+8	@media screen, projection {
+ 
+  html {
+    background: #fff;
+    color: #444;
+  }
+ 
+}
+声明完结
+所有声明都要用“;”结尾。
+考虑到一致性和拓展性，请在每个声明尾部都加上分号。
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10	/* 不推荐 */
+.test {
+  display: block;
+  height: 100px
+}
+/* 推荐 */
+.test {
+  display: block;
+  height: 100px;
+}
+属性名完结
+在属性名冒号结束后加一个空字符。
+出于一致性的原因，在属性名和值之间加一个空格（可不是属性名和冒号之间噢）。
+1
+2
+3
+4
+5
+6
+7
+8	/* 不推荐 */
+h3 {
+  font-weight:bold;
+}
+/* 推荐 */
+h3 {
+  font-weight: bold;
+}
+选择器和声明分行
+将选择器和声明隔行。
+每个选择器和声明都要独立新行。
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11	/* 不推荐 */
+a:focus, a:active {
+  position: relative; top: 1px;
+}
+/* 推荐 */
+h1,
+h2,
+h3 {
+  font-weight: normal;
+  line-height: 1.2;
+}
+规则分行
+每个规则独立一行。
+两个规则之间隔行。
+1
+2
+3
+4
+5
+6
+7
+8	html {
+  background: #fff;
+}
+ 
+body {
+  margin: auto;
+  width: 50%;
+}
+CSS元数据规则
+注释部分
+按组写注释。（可选）
+如果可以，按照功能的类别来对一组样式表写统一注释。独立成行。
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11	/* Header */
+ 
+#adw-header {}
+ 
+/* Footer */
+ 
+#adw-footer {}
+ 
+/* Gallery */
+ 
+.adw-gallery {}
+PS：坚持一致原则
+文件顶部注释（推荐使用） 
+/*
+* @description: 中文说明
+* @author: name
+* @update: name (2013-04-13 18:32)
+*/
+模块注释 
+/* module: module1 by 张三 */
+…
+/* module: module2 by 张三 */
+模块注释必须单独写在一行
+单行注释与多行注释  
+
+/* this is a short comment */
+单行注释可以写在单独一行，也可以写在行尾，注释中的每一行长度不超过40个汉字，或者80个英文字符。
+/*
+* this is comment line 1.
+* this is comment line 2.
+*/
+多行注释必须写在单独行内。
+特殊注释
+
+/* TODO: xxxx by name 2013-04-13 18:32 */
+/* BUGFIX: xxxx by name 2012-04-13 18:32 */
+用于标注修改、待办等信息
+区块注释
+
+1.	/* Header */
+2.	/* Footer */
+3.	/* Gallery */
+对一个代码区块注释（可选），将样式语句分区块并在新行中对其注释
+如果你要编辑代码，先花几分钟看看它的代码风格，如果它这么做，那你也应该这么做。
+风格统一了，就有了一个共同思维的环境，参与者就可以专注的看你要说什么，而不是先想你是在说哪星球的语言。 虽然我们在这里提出统一样式规则，但就只是想让大家都知晓并借鉴而对自己的风格进行修正。 当然，保持自己独有的风格也是很重要的。
+常用class名：
+page、wrap、layout、header(head)、footer(foot、ft)、content(cont)、menu、nav、main、submain、sidebar(side)、logo、banner、title(tit)、popo(pop)、icon、note、btn、txt、iblock、window(win)、tips
+
+
+
+IE 兼容模式
+IE 支持通过特定的 <meta> 标签来确定绘制当前页面所应该采用的 IE 版本。除非有强烈的特殊需求，否则最好是设置为 edge mode，从而通知 IE 采用其所支持的最新的模式。
+:::html
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+元素
+1.	html5元素
+o	section 表示文档中的节、区段，可以和h1-h6一起来显示文档结构
+o	article 表示一块比较独立的内容或者主题内容，块级元素，比如blog的内容，报纸的文章
+o	aside 表示article以外的内容，而且应该和article有一定的关系，块级元素
+o	hgroup 表示一个文档、区段(section)的标题组合
+o	header 表示页眉,页头
+o	footer 表示页脚
+o	nav 表示导航内容
+o	figure 表示以相对独立的或外引的元素，如img video
+o	figcaption 表示 figure内容的标题
+o	  :::html
+o	  <!-- hgroup 示例 -->
+o	  <hgroup>
+o	  <h1>文档主标题</h1>
+o	  <h2>文档副标题</h2>
+o	  </hgroup>
+o	
+o	  <!-- figure 示例 -->
+o	  <figure>
+o	   <video src="ogg"></video>
+o	   <figcaption>Example</figcaption>
+o	  </figure>
+o	
+o	  <figure>
+o	   <img src="img" alt="Example image" />
+o	   <figcaption>Example image</figcaption>
+  </figure>
+2.	结构性元素
+o	p 表示段落。只能包含内联元素，不能包含块级元素;
+o	div 本身无特殊含义，可用于布局。几乎可以包含任何元素;
+o	br 表示换行符;
+o	hr 表示水平分割线;
+o	h1-h6 表示标题。其中 h1 用于表示当前页面最重要的内容的标题;
+o	blockquote 表示引用，可以包含多个段落。请勿纯粹为了缩进而使用 blockquote，大部分浏览器默认将 blockquote 渲染为带有左右缩进;
+o	pre 表示一段格式化好的文本;
+3.	头部元素
+o	title 每个页面必须有且仅有一个 title 元素;
+o	base 可用场景：首页、频道等大部分链接都为新窗口打开的页面;
+o	link link 用于引入 css 资源时，可省去 media(默认为all) 和 type(默认为text/css) 属性;
+o	style type 默认为 text/css，可以省去;
+o	script type 属性可以省去; 不赞成使用lang属性; 不要使用古老的<!– //–>这种hack脚本, 它用于阻止第一代浏览器（Netscape 1和Mosaic）将脚本显示成文字;
+o	noscript 在用户代理不支持 JavaScript 的情况下提供说明;
+4.	文本元素
+o	a a 存在 href 属性时表示链接，无 href 属性但有 name 属性表示锚点;
+o	em,strong em 表示句意强调，加与不加会引起语义变化，可用于表示不同的心情或语调; strong 表示重要性强调，可用于局部或全局，strong强调的是重要性，不会改变句意;
+o	abbr 表示缩写;
+o	sub,sup 主要用于数学和化学公式，sup还可用于脚注;
+o	span 本身无特殊含义;
+o	ins,del 分别表示从文档中增加(插入)和删除
+5.	媒体元素
+o	img 请勿将img元素作为定位布局的工具，不要用他显示空白图片; 必要时给img元素增加alt属性;
+o	object 可以用来插入Flash;
+6.	列表元素
+o	dl 表示关联列表，dd是对dt的解释; dt和dd的对应关系比较随意：一个dt对应多个dd、多个dt对应一个dd、多个dt对应多个dd，都合法; 可用于名词/单词解释、日程列表、站点目录;
+o	ul 表示无序列表;
+o	ol 表示有序列表, 可用于排行榜等;
+o	li 表示列表项，必须是ul/ol的子元素;
+7.	表单元素
+o	推荐使用 button 代替 input，但必须声明 type;
+o	表单元素的 name 不能设定为 action, enctype, method, novalidate, target, submit 会导致表单提交混乱
+
+文／熊猫猫超人（简书作者）
+原文链接：http://www.jianshu.com/p/8d291d823cc0
+著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。
+
+
+常见标签
+标签	语义	嵌套常见错误	常用属性（加粗的为不可缺少的或建议的）
+<a></a>	超链接/锚	a不可嵌套a	href,name,title,rel,target
+<br />	换行	–	–
+<button></button>	按钮	不可嵌套表单元素	type,disabled
+<dd></dd>	定义列表中的定义（描述内容）	只能以dl为父容器，对应一个dt	–
+<del></del>	文本删除	–	–
+<div></div>	块级容器	–	–
+<dl></dl>	定义列表	只能嵌套dt和dd	–
+<dt></dt>	定义列表中的定义术语	只能以dl为父容器，对应多个dd	–
+<em></em>	强调文本	不可嵌套表单元素	type,disabled
+<form></form>	表单	–	action,target,method,name
+<h1></h1>	标题	从h1到h6，不可嵌套块级元素	–
+<iframe></iframe>	内嵌一个网页	–	frameborder,width,height,src,scrolling,name
+<img />	图像	–	alt,src,width,height
+<input />	各种表单控件	–	type,name,value,checked,disabled,maxlength,readonly,accesskey
+<label></label>	标签为input元素定义标注	–	for
+<li></li>	列表项	只能以ul或ol为父容器	–
+<link />	引用样式或icon	不可嵌套任何元素	type,rel,href
+<meta />	文档信息	只用于head	content,http-equiv,name
+<ol></ol>	有序列表	只能嵌套li	–
+<option></option>	select中的一个选项	仅用于select	value,selected,disabled
+<p></p>	段落	不能嵌套块级元素	–
+<script></script>	引用脚本	不可嵌套表单元素	type,src
+<select></select>	列表框或下拉框	只能嵌套option或optgroup	name,disabled,multiple
+<span></span>	内联容器	–	–
+<strong></strong>	强调文本	–	–
+<style></style>	引用样式	不可嵌套表单元素	type,media
+<sub></sub>	下标	–	–
+<sup></sup>	上标	–	–
+<table></table>	表格	只可嵌套表格元素	width,align,background,cellpadding,cellspacing,summary,border
+<tbody></tbody>	表格主体	只用于table	–
+<td></td>	表格中的单元格	只用于tr	colspan,rowspan
+<textarea></textarea>	多行文本输入控件	–	name,accesskey,disabled,readonly,rows,cols
+<tfoot></tfoot>	表格表尾	只用于table	–
+<th></th>	表格中的标题单元格	只用于tr	colspan,rowspan
+<thead></thead>	表格表头	只用于table	–
+<title></title>	文档标题	只用于head	–
+<tr></tr>	表格行	嵌套于table或thead、tbody、tfoot	–
+<ul></ul>	无序列表	只能嵌套li	–
+常用HTML字符实体（建议使用实体）：
+字符	名称	实体名	实体数
+“	双引号	&quot;	&#34;
+&	&符	&amp;	&#38;
+<	左尖括号（小于号）	&lt;	&#60;
+>	右尖括号（大于号）	&gt;	&#62;
+–	空格	&nbsp;	&#160;
+–	中文全角空格	–	&#12288;
+
